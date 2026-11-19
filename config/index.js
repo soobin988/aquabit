@@ -15,8 +15,18 @@ const env = process.env;
 module.exports = {
   port: toInt(env.PORT, 3001),
   host: env.HOST || '127.0.0.1',
-  gameUrl: env.GAME_URL || 'http://game.aquabit.lab',
+  gameUrl: env.GAME_URL || '/community/login.html',
   siteName: 'AQUABIT',
+  webmail: {
+    host: env.WEBMAIL_HOST || '',
+    serverName: env.WEBMAIL_SERVER_NAME || '',
+    domain: (env.WEBMAIL_DOMAIN || '').toLowerCase(),
+    smtpPort: toInt(env.WEBMAIL_SMTP_PORT, 25),
+    popPort: toInt(env.WEBMAIL_POP_PORT, 110),
+    smtpSecure: env.WEBMAIL_SMTP_SECURE === 'true',
+    popSecure: env.WEBMAIL_POP_SECURE === 'true',
+    starttls: env.WEBMAIL_STARTTLS === 'true',
+  },
 
   smtp: {
     host: env.SMTP_HOST || 'mail.aquabit.lab',

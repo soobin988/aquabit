@@ -1,5 +1,9 @@
 # 패키지 (npm install로 다시 설치되므로 올리지 않음)
 node_modules/
+.reference/
+
+# 게임 빌드 결과 (npm start가 생성)
+public/play/
 
 # 비밀번호, 환경 설정 (SMTP 비밀번호 등)
 .env
@@ -8,6 +12,10 @@ node_modules/
 
 # 접수된 문의 (개인정보)
 data/inquiries.json
+data/aquarium-chat.json
+data/aquarium-chat.json.tmp
+data/aquarium-sent-mail.json
+data/aquarium-sent-mail.json.tmp
 
 # 로그
 *.log

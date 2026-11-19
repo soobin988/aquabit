@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>어항 | AQUABIT</title>
+  <link rel="stylesheet" href="/community/css/base.css?v=2">
+  <link rel="stylesheet" href="/community/css/game.css">
+  <link rel="stylesheet" href="/community/css/fx.css">
+<link rel="stylesheet" href="/play/community-entry.css">
+<link rel="stylesheet" href="/play/community-shared.css">
+</head>
+<body class="game" data-community-page="tank">
+  <div class="game-tank" id="tank" aria-label="어항. 물고기를 누르면 정보가 보여요."></div>
+
+  <!-- 상단 HUD -->
+  <header class="hud-top">
+    <div class="hud-left">
+      <a class="hud-icon-btn panel panel--glass" href="/community/tanks.html" aria-label="내 어항 목록으로" data-icon="back"></a>
+      <div class="profile panel panel--glass">
+        <span class="profile-avatar" id="avatar"></span>
+        <span class="profile-text">
+          <span class="profile-nick pixel" id="myNick"></span>
+          <span class="profile-tank" id="tankName"></span>
+        </span>
+      </div>
+    </div>
+    <div class="hud-right">
+      <button class="counter panel panel--glass" id="pearlBtn" type="button" title="진주 내역 보기">
+        <span data-icon="pearl"></span>
+        <span class="sr-only">진주</span>
+        <b class="counter-n pixel" id="pearlCount">0</b>
+      </button>
+      <button class="counter panel panel--glass" id="foodBtn" type="button" title="먹이 사러 가기">
+        <span data-icon="food"></span>
+        <span class="sr-only">먹이</span>
+        <b class="counter-n pixel" id="foodCount">0</b>
+      </button>
+    </div>
+  </header>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <!-- 채팅 -->
+  <aside class="chat panel panel--glass" id="chat" data-open="true" aria-label="팀 채팅">
+    <div class="chat-head">
+      <span class="chat-title pixel"><span data-icon="chat"></span>팀 채팅</span>
+      <button class="chat-toggle btn btn--foam btn--small" id="chatToggle" type="button" aria-expanded="true" aria-controls="chatBody">접기</button>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <ol class="chat-list" id="chatList" aria-live="polite"></ol>
+      <form class="chat-form" id="chatForm" autocomplete="off">
+        <label class="sr-only" for="chatInput">메시지</label>
+        <input class="input chat-input" id="chatInput" maxlength="300" placeholder="팀원에게 한마디">
+        <button class="btn btn--sea btn--small" type="submit">보내기</button>
+      </form>
+    </div>
+  </aside>
+  <button class="chat-tab btn btn--small" id="chatTab" type="button" hidden aria-controls="chat">
+    <span data-icon="chat"></span>채팅<span class="badge" id="chatUnread" hidden></span>
+  </button>
+
+  <!-- 먹이 주기 모드: 줄 물고기 고르기 -->
+  <div class="feed-bar panel panel--glass" id="feedBar" hidden>
+    <p class="feed-hint">먹이를 줄 물고기를 고르고, 어항 아무 곳이나 누르면 그 자리로 먹이가 떨어져요.</p>
+    <div class="feed-targets" id="feedTargets" role="radiogroup" aria-label="먹이를 줄 물고기"></div>
+  </div>
+
+  <!-- 하단 액션 바 -->
+  <nav class="hud-bottom panel panel--glass" aria-label="어항 메뉴">
+    <button class="action" id="actFeed" type="button" aria-pressed="false"><span data-icon="food"></span><span>먹이 주기</span></button>
+    <button class="action" id="actDecorate" type="button"><span data-icon="brush"></span><span>꾸미기</span></button>
+    <button class="action" id="settingsBtn" type="button" aria-label="어항 설정"><span data-icon="gear"></span><span>어항</span></button>
+    <button class="action" id="actTasks" type="button"><span data-icon="task"></span><span>과제</span><span class="badge" id="taskBadge" hidden></span></button>
+    <button class="action" id="actShop" type="button"><span data-icon="shop"></span><span>상점</span></button>
+    <button class="action" id="actTeam" type="button"><span data-icon="team"></span><span>팀</span></button>
+  </nav>
+
+  <!-- 물고기 정보 카드 -->
+  <section class="fish-card panel" id="fishCard" hidden aria-labelledby="cardName">
+    <button class="card-close" type="button" aria-label="닫기" data-close>×</button>
+    <div class="card-portrait" id="cardPortrait"></div>
+    <div class="card-info">
+      <h2 class="card-name pixel" id="cardName"></h2>
+      <p class="card-owner" id="cardOwner"></p>
+      <div class="card-stage">
+        <span class="pixel" id="cardStage"></span>
+        <span class="status-chip" id="cardStatus"></span>
+      </div>
+      <div class="gauge" id="cardGauge" role="meter" aria-valuemin="0" aria-valuemax="100"><i></i></div>
+      <p class="card-next" id="cardNext"></p>
+      <p class="card-today" id="cardToday"></p>
+      <div class="card-actions" id="cardActions"></div>
+    </div>
+  </section>
+
+  <!-- 꾸미기 -->
+  <dialog class="sheet panel" id="decorateDialog" aria-labelledby="decoTitle">
+    <form method="dialog" class="sheet-inner" id="decorateForm">
+      <header class="sheet-head">
+        <h2 class="sheet-title pixel" id="decoTitle">내 물고기 꾸미기</h2>
+        <button class="card-close" value="cancel" aria-label="닫기">×</button>
+      </header>
+      <div class="deco-grid">
+        <div class="deco-preview" id="decoPreview"></div>
+        <div class="deco-controls">
+          <div class="field">
+            <label for="decoName">이름</label>
+            <input class="input" id="decoName" maxlength="12" required>
+          </div>
+          <fieldset class="choice">
+            <legend>종류</legend>
+            <div class="choice-row" id="speciesChoices"></div>
+          </fieldset>
+          <fieldset class="choice">
+            <legend>색</legend>
+            <div class="choice-row" id="colorChoices"></div>
+          </fieldset>
+          <fieldset class="choice">
+            <legend>장신구</legend>
+            <div class="choice-row" id="accChoices"></div>
+            <p class="choice-help" id="accHelp">상점에서 산 장신구만 착용할 수 있어요.</p>
+          </fieldset>
+        </div>
+      </div>
+      <p class="form-error" role="alert" id="decoError"></p>
+      <footer class="sheet-foot">
+        <button class="btn btn--foam" value="cancel">취소</button>
+        <button class="btn btn--sea" id="decoSave" value="default">저장하기</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- 상점 -->
+  <dialog class="sheet panel" id="shopDialog" aria-labelledby="shopTitle">
+    <div class="sheet-inner">
+      <header class="sheet-head">
+        <h2 class="sheet-title pixel" id="shopTitle">상점</h2>
+        <span class="sheet-wallet pixel" id="shopWallet"></span>
+        <button class="card-close" type="button" aria-label="닫기" data-close>×</button>
+      </header>
+      <ul class="shop-list" id="shopList"></ul>
+      <p class="form-error" role="alert" id="shopError"></p>
+    </div>
+  </dialog>
+
+  <!-- 진주 내역 -->
+  <dialog class="sheet panel" id="historyDialog" aria-labelledby="histTitle">
+    <div class="sheet-inner">
+      <header class="sheet-head">
+        <h2 class="sheet-title pixel" id="histTitle">진주 내역</h2>
+        <span class="sheet-wallet pixel" id="histWallet"></span>
+        <button class="card-close" type="button" aria-label="닫기" data-close>×</button>
+      </header>
+      <p class="hist-streak" id="histStreak"></p>
+      <ol class="hist-list" id="histList"></ol>
+    </div>
+  </dialog>
+
+  <!-- 과제 보드 (3단계) -->
+  <dialog class="sheet sheet--wide panel" id="tasksDialog" aria-labelledby="tasksTitle">
+    <div class="sheet-inner">
+      <header class="sheet-head">
+        <h2 class="sheet-title pixel" id="tasksTitle">과제 보드</h2>
+        <button class="card-close" type="button" aria-label="닫기" data-close>×</button>
+      </header>
+      <div id="tasksBody"></div>
+    </div>
+  </dialog>
+
+  <!-- 팀 -->
+  <dialog class="sheet panel" id="teamDialog" aria-labelledby="teamTitle">
+    <div class="sheet-inner">
+      <header class="sheet-head">
+        <h2 class="sheet-title pixel" id="teamTitle">팀</h2>
+        <button class="card-close" type="button" aria-label="닫기" data-close>×</button>
+      </header>
+      <div class="invite">
+        <span class="invite-label">초대 코드</span>
+        <b class="invite-code pixel" id="inviteCode"></b>
+        <button class="btn btn--small" type="button" id="copyInvite">복사</button>
+      </div>
+      <p class="team-count pixel" id="teamCount"></p>
+      <ul class="member-list" id="memberList"></ul>
+      <div class="team-danger" id="teamDanger"></div>
+    </div>
+  </dialog>
+
+  <!-- 확인 (어항 삭제, 나가기, 대표 넘기기) -->
+  <dialog class="sheet sheet--small panel" id="confirmDialog" aria-labelledby="confirmTitle">
+    <form method="dialog" class="sheet-inner" id="confirmForm" novalidate>
+      <header class="sheet-head">
+        <h2 class="sheet-title pixel" id="confirmTitle"></h2>
+      </header>
+      <div class="confirm-body" id="confirmBody"></div>
+      <div class="field" id="confirmField" hidden>
+        <label for="confirmInput" id="confirmLabel"></label>
+        <input class="input" id="confirmInput" autocomplete="off">
+      </div>
+      <p class="form-error" role="alert" id="confirmError"></p>
+      <footer class="sheet-foot">
+        <button class="btn btn--foam" value="cancel" type="submit" formnovalidate>취소</button>
+        <button class="btn btn--coral" id="confirmOk" value="ok" type="submit"></button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- 설정 -->
+  <dialog class="sheet sheet--small panel" id="settingsDialog" aria-labelledby="setTitle">
+    <div class="sheet-inner">
+      <header class="sheet-head">
+        <h2 class="sheet-title pixel" id="setTitle">설정</h2>
+        <button class="card-close" type="button" aria-label="닫기" data-close>×</button>
+      </header>
+      <label class="toggle">
+        <input type="checkbox" id="soundToggle">
+        <span>효과음 <small>먹이, 진주, 성장 소리</small></span>
+      </label>
+      <div class="settings-links">
+        <button class="btn btn--foam" type="button" id="openHistory">진주 내역</button>
+        <a class="btn btn--foam" href="/community/tanks.html">어항 목록</a>
+        <button class="btn btn--coral" type="button" id="logoutBtn">로그아웃</button>
+      </div>
+    </div>
+  </dialog>
+
+  
+  
+  
+  
+  
+  
+  
+  
+<script type="module" src="/play/community-entry.js"></script>
+</body>
+</html>

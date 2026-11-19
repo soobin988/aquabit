@@ -6,6 +6,7 @@ const app = require('./app');
 const server = app.listen(config.port, config.host, () => {
   console.log(`[AQUABIT] http://${config.host}:${config.port} 에서 실행 중`);
 });
+require('./server/game/router').attach(server);
 
 server.on('error', (err) => {
   if (err.code === 'EADDRINUSE') {

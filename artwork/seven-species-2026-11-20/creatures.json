@@ -1,0 +1,100 @@
+{
+  "gold": {
+    "label": "금붕어",
+    "file": "assets/creatures/gold.png",
+    "frames": [
+      "assets/creatures/gold.png",
+      "assets/creatures/gold-2.png"
+    ],
+    "hue": 30.0,
+    "glow": [
+      255,
+      154,
+      53
+    ]
+  },
+  "guppy": {
+    "label": "구피",
+    "file": "assets/creatures/guppy.png",
+    "frames": [
+      "assets/creatures/guppy.png",
+      "assets/creatures/guppy-2.png"
+    ],
+    "hue": 167.0,
+    "glow": [
+      80,
+      207,
+      180
+    ]
+  },
+  "betta": {
+    "label": "베타",
+    "file": "assets/creatures/betta.png",
+    "frames": [
+      "assets/creatures/betta.png",
+      "assets/creatures/betta-2.png"
+    ],
+    "hue": 234.0,
+    "glow": [
+      108,
+      120,
+      220
+    ]
+  },
+  "neon": {
+    "label": "네온테트라",
+    "file": "assets/creatures/neon.png",
+    "frames": [
+      "assets/creatures/neon.png",
+      "assets/creatures/neon-2.png"
+    ],
+    "hue": 191.0,
+    "glow": [
+      69,
+      203,
+      233
+    ]
+  },
+  "shrimp": {
+    "label": "새우",
+    "file": "assets/creatures/shrimp.png",
+    "frames": [
+      "assets/creatures/shrimp.png",
+      "assets/creatures/shrimp-2.png"
+    ],
+    "hue": 205.0,
+    "glow": [
+      36,
+      140,
+      212
+    ]
+  },
+  "angel": {
+    "label": "엔젤피쉬",
+    "file": "assets/creatures/angel.png",
+    "frames": [
+      "assets/creatures/angel.png",
+      "assets/creatures/angel-2.png"
+    ],
+    "hue": 187.0,
+    "glow": [
+      84,
+      197,
+      212
+    ]
+  },
+  "starfish": {
+    "label": "불가사리",
+    "file": "assets/creatures/starfish.png",
+    "frames": [
+      "assets/creatures/starfish.png",
+      "assets/creatures/starfish-2.png"
+    ],
+    "hue": 12.0,
+    "glow": [
+      241,
+      132,
+      104
+    ]
+  }
+}

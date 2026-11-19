@@ -1,0 +1,60 @@
+/* 팝업과 연출 (출석, LEVEL UP, 날아가는 진주) */
+
+.fx-overlay { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 16px; }
+.fx-overlay--dim { background: rgba(16, 54, 92, 0.5); animation: fade-in 160ms steps(3); }
+.fx-overlay--pass { pointer-events: auto; cursor: pointer; }
+.fx-overlay.out { animation: fade-out 280ms steps(3) forwards; }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
+
+.fx-card {
+  width: min(380px, 100%);
+  padding: 22px 22px 18px;
+  text-align: center;
+  background: var(--pearl);
+  animation: card-pop 260ms steps(4);
+}
+@keyframes card-pop { 0% { transform: scale(0.7); } 70% { transform: scale(1.06); } }
+.fx-title { margin: 0; font-size: 24px; font-weight: 400; }
+.fx-sub { margin: 4px 0 16px; font-size: 14px; color: var(--ink-soft); }
+.att-days { list-style: none; display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin: 0 0 18px; padding: 0; }
+.att-days li {
+  display: grid; place-items: center; aspect-ratio: 1;
+  background: #dfeef0; color: #8aa0b4; font-size: 13px;
+  box-shadow: inset 0 0 0 2px #b5ccd8;
+}
+.att-days li.on { background: var(--lagoon); color: #fff; box-shadow: inset 0 0 0 2px var(--ink), inset 0 -3px 0 2px var(--deep); }
+.att-days li.gift { background: var(--sand); color: var(--ink); }
+.att-days li.gift.on { background: #ffcf4a; box-shadow: inset 0 0 0 2px var(--ink), inset 0 -3px 0 2px var(--sand-deep); }
+.fx-reward { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0; font-size: 40px; line-height: 1; }
+.fx-bonus { margin: 8px 0 16px; font-size: 13px; color: var(--ink-soft); }
+
+/* LEVEL UP! */
+.levelup { display: grid; justify-items: center; gap: 6px; text-align: center; }
+.levelup-word {
+  margin: 0;
+  font-size: clamp(44px, 9vw, 88px);
+  line-height: 1;
+  color: #ffe066;
+  text-shadow:
+    4px 0 0 var(--ink), -4px 0 0 var(--ink), 0 4px 0 var(--ink), 0 -4px 0 var(--ink),
+    4px 4px 0 var(--ink), -4px 4px 0 var(--ink), 4px -4px 0 var(--ink), -4px -4px 0 var(--ink),
+    0 10px 0 rgba(16, 54, 92, 0.35);
+  animation: lvl-word 900ms steps(6);
+}
+@keyframes lvl-word {
+  0% { transform: translateY(40px) scale(0.4); opacity: 0; }
+  40% { transform: translateY(-10px) scale(1.15); opacity: 1; }
+  60% { transform: translateY(0) scale(1); }
+}
+.levelup-fish { animation: lvl-fish 1.2s steps(8) infinite alternate; filter: drop-shadow(0 0 0 #fff) drop-shadow(4px 0 0 rgba(255,255,255,.7)) drop-shadow(-4px 0 0 rgba(255,255,255,.7)); }
+@keyframes lvl-fish { to { transform: translateY(-8px); } }
+.levelup-text {
+  margin: 0; padding: 8px 14px 10px;
+  background: var(--ink); color: var(--pearl); font-size: 16px;
+}
+
+/* 날아가는 진주 */
+.fly-pearl { position: fixed; z-index: 60; pointer-events: none; transform: translate(-50%, -50%); }
+.counter.stack { animation: stack 240ms steps(3); }
+@keyframes stack { 50% { transform: translateY(2px) scale(1.06); } }

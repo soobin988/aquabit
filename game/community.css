@@ -1,0 +1,20 @@
+.integrated-scene, .integrated-fish, .integrated-fish canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.integrated-fish canvas { display: block; image-rendering: pixelated; }
+.community-mail { position: fixed; z-index: 20; left: 18px; top: 46%; padding: 12px; }
+.community-mail img { image-rendering: pixelated; display: block; }
+.integrated-scene { --muted: #668399; --line: #dceaf2; --teal: #1565c0; }
+.integrated-scene .communication-window { background: white; border: 3px solid #0b1d3a; color: #0b1d3a; }
+.integrated-scene .dialog-head { display: flex; align-items: center; justify-content: space-between; }
+.integrated-scene .close { border: 0; background: #eef5fb; padding: 8px; cursor: pointer; }
+.integrated-scene .primary { background: #1565c0; color: white; border: 2px solid #0b1d3a; padding: 10px 16px; }
+.integrated-scene .text-button { border: 0; background: transparent; color: #1565c0; cursor: pointer; }
+.integrated-scene label { display: block; font-size: 12px; }
+.integrated-scene input { display: block; padding: 9px; margin-top: 8px; width: 100%; }
+.food-stock, .feeding-zone { pointer-events: none; }
+.preview-badge { position: fixed; z-index: 28; top: 88px; left: 20px; background: #fff; color: #10365c; padding: 5px 10px; border: 2px solid #10365c; font-size: 11px; pointer-events: none; }
+.preview-entry { display: block; text-align: center; margin-top: 20px; font-size: 14px; color: #1565c0; }
+.preview-note { font-size: 11px; text-align: center; color: #668399; margin: 6px 0 0; }
+.community-plant-options { display: flex; gap: 8px; margin: 15px 0; }
+.community-plant-options button { flex: 1; background: #fff; border: 2px solid #dceaf2; padding: 8px; font-size: 12px; cursor: pointer; }
+.community-plant-options button[aria-pressed=true] { border-color: #1565c0; background: #e3f5ff; }
+.community-plant-options img { display: block; margin: auto; width: 48px; height: 64px; object-fit: contain; image-rendering: pixelated; }

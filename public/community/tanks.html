@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>내 어항 | AQUABIT</title>
+  <link rel="stylesheet" href="/community/css/base.css?v=2">
+  <link rel="stylesheet" href="/community/css/pages.css">
+  <link rel="stylesheet" href="/community/css/fx.css">
+<link rel="stylesheet" href="/play/community-entry.css">
+<link rel="stylesheet" href="/play/community-shared.css">
+</head>
+<body class="sea-bg tanks-page" data-community-page="tanks">
+  <header class="bar">
+    <a class="wordmark-inline pixel" href="/">AQUABIT</a>
+    <div class="bar-user">
+      <span class="bar-pearls pixel" id="pearlChip" title="내 진주"><span id="pearlIcon"></span><b id="pearlCount">0</b></span>
+      <span class="bar-nick" id="nick"></span>
+      <button class="btn btn--foam btn--small" id="logoutBtn" type="button">로그아웃</button>
+    </div>
+  </header>
+
+  <main class="tanks-main">
+    <section class="tanks-actions" aria-label="어항 만들기와 참여">
+      <form class="panel action-box" id="createForm" novalidate>
+        <h2 class="box-title">새 어항 만들기</h2>
+        <p class="box-help">만든 사람이 대표가 되고, 팀원에게 보낼 초대 코드가 나와요.</p>
+        <div class="field">
+          <label for="tankName">어항 이름</label>
+          <input class="input" id="tankName" name="name" maxlength="20" placeholder="예: 클라우드 7팀" required>
+        </div>
+        <p class="form-error" role="alert" data-error></p>
+        <button class="btn btn--sea" type="submit">어항 만들기</button>
+      </form>
+
+      <form class="panel action-box" id="joinForm" novalidate>
+        <h2 class="box-title" id="join">초대 코드로 참여</h2>
+        <p class="box-help">팀원에게 받은 여섯 자리 코드를 입력하세요.</p>
+        <div class="field">
+          <label for="joinCode">초대 코드</label>
+          <input class="input code-input pixel" id="joinCode" name="code" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="6자리" required>
+        </div>
+        <p class="form-error" role="alert" data-error></p>
+        <button class="btn" type="submit">참여하기</button>
+      </form>
+    </section>
+
+    <section class="tanks-list-wrap" aria-labelledby="listTitle">
+      <h1 class="page-title" id="listTitle">내 어항</h1>
+      <p class="tanks-notice" id="notice" role="status" hidden></p>
+      <p class="tanks-empty panel panel--glass" id="emptyMsg" hidden>아직 들어간 어항이 없어요. 왼쪽에서 어항을 만들거나 팀원에게 받은 코드를 입력해 보세요.</p>
+      <ul class="tank-grid" id="tankGrid"></ul>
+    </section>
+  </main>
+
+  <dialog class="panel created-dialog" id="createdDialog" aria-labelledby="createdTitle">
+    <h2 class="box-title" id="createdTitle">어항을 만들었어요</h2>
+    <p class="box-help">이 코드를 팀원에게 보내 주세요. 코드를 입력하면 바로 들어올 수 있어요.</p>
+    <p class="big-code pixel" id="createdCode"></p>
+    <div class="dialog-actions">
+      <button class="btn btn--foam" type="button" id="copyCode">코드 복사</button>
+      <a class="btn btn--sea" id="goTank" href="#">어항으로 가기</a>
+    </div>
+  </dialog>
+
+  
+  
+  
+  
+<script type="module" src="/play/community-entry.js"></script>
+</body>
+</html>

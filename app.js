@@ -39,6 +39,32 @@ app.use(
 );
 
 app.use(express.urlencoded({ extended: false, limit: '20kb' }));
+app.use('/api/game', require('./server/game/router').router);
+app.use('/community', helmet.contentSecurityPolicy({ directives: {
+  'default-src': ["'self'"], 'script-src': ["'self'"], 'style-src': ["'self'", "'unsafe-inline'"],
+  'img-src': ["'self'", 'data:', 'blob:'], 'worker-src': ["'self'", 'blob:'],
+  'upgrade-insecure-requests': null,
+} }));
+app.use('/community', express.static(path.join(__dirname, 'public/community'), {
+  maxAge: 0, setHeaders(res) { res.setHeader('Cache-Control', 'no-store'); },
+}));
+// 수업 외 내용: 게임의 Vue 스타일과 WebGL 텍스처에 필요한 정책을 이 경로에 적용합니다.
+app.use('/play', helmet.contentSecurityPolicy({
+  directives: {
+    'default-src': ["'self'"],
+    'script-src': ["'self'"],
+    'style-src': ["'self'", "'unsafe-inline'"],
+    'img-src': ["'self'", 'data:', 'blob:'],
+    'worker-src': ["'self'", 'blob:'],
+    'upgrade-insecure-requests': null,
+  },
+}));
+app.use('/play', express.static(path.join(__dirname, 'public', 'play'), {
+  maxAge: 0,
+  setHeaders(res) {
+    res.setHeader('Cache-Control', 'no-store');
+  },
+}));
 app.use(
   express.static(path.join(__dirname, 'public'), {
     maxAge: '1h',
@@ -57,6 +83,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/pages'));
 app.use('/notices', require('./routes/notices'));
 app.use('/support', require('./routes/support'));
+app.use('/api/communications', require('./routes/communications').createCommunicationsRouter());
 
 // 404
 app.use((req, res) => {

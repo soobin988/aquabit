@@ -1,0 +1,27 @@
+{
+  "mode": "built-in image_gen",
+  "operation": "style-transfer",
+  "references": [
+    "game/public/assets/fish-angel.png",
+    "game/public/assets/fish-shrimp.png"
+  ],
+  "formatting": "Nearest-neighbor reduction to a 96x32 strip; split into two transparent 48x32 PNGs. Alpha threshold 128. Reference images not modified.",
+  "promptSet": [
+    {
+      "species": "gold",
+      "prompt": "Use case: style-transfer. Images 1 and 2 are the existing species animation frames to redesign. Images 3 and 4 are the user's hand-drawn pixel angelfish and shrimp, style references only. Match thin single-logical-pixel dark navy outlines, angular recognizable anatomy, flat hand-placed highlight clusters, neat pixel fins and restrained retro handmade detail. One horizontal two-frame sprite strip, transparent RGBA, logical 96x32 pixels, two side-by-side 48x32 cells, enlarged only for generation. Both animals face left, body centered local x24 y18, clear top 5 rows for accessories. Frames share head/body position, scale, colors and size; change only tail and little fins. No gradients, antialiasing, glow, cast shadow, text, labels, borders or printed checkerboard. Preserve the source reference animals. Orange small ornamental goldfish with gold scale highlights, pale cream belly, shaded dorsal fin and flowing forked tail; black pixel eye and pale glint."
+    },
+    {
+      "species": "betta",
+      "prompt": "Use case: style-transfer. Images 1 and 2 are the existing species animation frames to redesign. Images 3 and 4 are the user's hand-drawn pixel angelfish and shrimp, style references only. Match thin single-logical-pixel dark navy outlines, angular recognizable anatomy, flat hand-placed highlight clusters, neat pixel fins and restrained retro handmade detail. One horizontal two-frame sprite strip, transparent RGBA, logical 96x32 pixels, two side-by-side 48x32 cells, enlarged only for generation. Both animals face left, body centered local x24 y18, clear top 5 rows for accessories. Frames share head/body position, scale, colors and size; change only tail and little fins. No gradients, antialiasing, glow, cast shadow, text, labels, borders or printed checkerboard. Preserve the source reference animals. Pink and lavender betta with elongated flowing violet tail, pink body, pale pink belly, tiny cyan rim highlights, distinct small betta head and trailing ventral fins."
+    },
+    {
+      "species": "guppy",
+      "prompt": "Use case: style-transfer. Images 1 and 2 are the existing species animation frames to redesign. Images 3 and 4 are the user's hand-drawn pixel angelfish and shrimp, style references only. Match thin single-logical-pixel dark navy outlines, angular recognizable anatomy, flat hand-placed highlight clusters, neat pixel fins and restrained retro handmade detail. One horizontal two-frame sprite strip, transparent RGBA, logical 96x32 pixels, two side-by-side 48x32 cells, enlarged only for generation. Both animals face left, body centered local x24 y18, clear top 5 rows for accessories. Frames share head/body position, scale, colors and size; change only tail and little fins. No gradients, antialiasing, glow, cast shadow, text, labels, borders or printed checkerboard. Preserve the source reference animals. Small slender mint turquoise guppy with distinct broad triangular coral-red fan tail, pearly pale belly, tiny navy spots on the fan and pale cyan fin pixels."
+    },
+    {
+      "species": "neon",
+      "prompt": "Use case: style-transfer. Images 1 and 2 are the existing species animation frames to redesign. Images 3 and 4 are the user's hand-drawn pixel angelfish and shrimp, style references only. Match thin single-logical-pixel dark navy outlines, angular recognizable anatomy, flat hand-placed highlight clusters, neat pixel fins and restrained retro handmade detail. One horizontal two-frame sprite strip, transparent RGBA, logical 96x32 pixels, two side-by-side 48x32 cells, enlarged only for generation. Both animals face left, body centered local x24 y18, clear top 5 rows for accessories. Frames share head/body position, scale, colors and size; change only tail and little fins. No gradients, antialiasing, glow, cast shadow, text, labels, borders or printed checkerboard. Preserve the source reference animals. Slender small neon tetra with bright cyan blue horizontal stripe, vivid red stripe on rear lower half, silvery pale belly and small gray-blue fins."
+    }
+  ]
+}

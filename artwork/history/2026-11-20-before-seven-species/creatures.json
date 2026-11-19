@@ -1,0 +1,122 @@
+{
+  "mackerel": {
+    "label": "고등어",
+    "file": "assets/creatures/고등어.png",
+    "hue": 204.0,
+    "glow": [
+      188,
+      194,
+      198
+    ]
+  },
+  "flounder": {
+    "label": "광어",
+    "file": "assets/creatures/광어.png",
+    "hue": 36.0,
+    "glow": [
+      76,
+      70,
+      61
+    ]
+  },
+  "seabass": {
+    "label": "농어",
+    "file": "assets/creatures/농어.png",
+    "hue": 81.0,
+    "glow": [
+      126,
+      146,
+      90
+    ]
+  },
+  "tuna": {
+    "label": "다랑어",
+    "file": "assets/creatures/다랑어.png",
+    "hue": 70.0,
+    "glow": [
+      229,
+      241,
+      169
+    ]
+  },
+  "bream": {
+    "label": "도미",
+    "file": "assets/creatures/도미.png",
+    "hue": 354.0,
+    "glow": [
+      236,
+      112,
+      125
+    ]
+  },
+  "sunfish": {
+    "label": "개복치",
+    "file": "assets/creatures/개복치.png",
+    "hue": 228.0,
+    "glow": [
+      149,
+      167,
+      236
+    ]
+  },
+  "ocean1": {
+    "label": "바다물고기(1)",
+    "file": "assets/creatures/바다물고기(1).png",
+    "hue": 51.0,
+    "glow": [
+      231,
+      203,
+      53
+    ]
+  },
+  "ocean2": {
+    "label": "바다물고기(2)",
+    "file": "assets/creatures/바다물고기(2).png",
+    "hue": 210.0,
+    "glow": [
+      58,
+      62,
+      66
+    ]
+  },
+  "shrimp": {
+    "label": "새우",
+    "file": "assets/creatures/새우.png",
+    "hue": 194.0,
+    "glow": [
+      154,
+      173,
+      179
+    ]
+  },
+  "squid": {
+    "label": "오징어",
+    "file": "assets/creatures/오징어.png",
+    "hue": 0.0,
+    "glow": [
+      194,
+      143,
+      143
+    ]
+  },
+  "smallfish": {
+    "label": "잡어",
+    "file": "assets/creatures/잡어.png",
+    "hue": 18.0,
+    "glow": [
+      165,
+      149,
+      142
+    ]
+  },
+  "sardine": {
+    "label": "정어리",
+    "file": "assets/creatures/정어리.png",
+    "hue": 208.0,
+    "glow": [
+      130,
+      196,
+      255
+    ]
+  }
+}

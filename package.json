@@ -6,17 +6,38 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "build": "node scripts/build-game.cjs",
+    "test:game": "node --test tests/game-simulation.test.mjs",
+    "test:communications": "node --test tests/communications.test.cjs",
+    "test:community": "node --test tests/community.test.cjs",
+    "test:feeding": "node --test tests/feeding.test.mjs",
+    "db:game:init": "node scripts/init-community-db.cjs",
+    "prestart": "node scripts/build-game.cjs",
+    "predev": "node scripts/build-game.cjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.12"
   },
   "license": "UNLICENSED",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "dotenv": "^18.0.10",
     "ejs": "^7.0.2",
     "express": "^5.3.0",
+    "express-mysql-session": "^3.0.3",
+    "express-session": "^1.19.0",
     "helmet": "^8.3.0",
-    "nodemailer": "^10.6.0"
+    "mailparser": "^3.14.5",
+    "mysql2": "^3.24.6",
+    "nodemailer": "^10.6.0",
+    "pixi-filters": "^6.1.5",
+    "pixi.js": "^8.22.0",
+    "socket.io": "^4.8.4",
+    "vue": "^3.5.44"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.10",
+    "vite": "^8.3.5"
   }
 }
